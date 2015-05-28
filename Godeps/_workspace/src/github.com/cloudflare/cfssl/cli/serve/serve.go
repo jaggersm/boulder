@@ -18,8 +18,8 @@ import (
 	"github.com/letsencrypt/boulder/Godeps/_workspace/src/github.com/cloudflare/cfssl/ubiquity"
 )
 
-var serverUsageText = // Usage text of 'cfssl serve'
-`cfssl serve -- set up a HTTP server handles CF SSL requests
+// Usage text of 'cfssl serve'
+var serverUsageText = `cfssl serve -- set up a HTTP server handles CF SSL requests
 
 Usage of serve:
         cfssl serve [-address address] [-ca cert] [-ca-bundle bundle] \

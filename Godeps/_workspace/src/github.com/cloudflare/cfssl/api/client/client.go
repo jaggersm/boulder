@@ -16,8 +16,8 @@ import (
 	"github.com/letsencrypt/boulder/Godeps/_workspace/src/github.com/cloudflare/cfssl/errors"
 )
 
-type // A Server points to a remote CFSSL instance.
-Server struct {
+// A Server points to a remote CFSSL instance.
+type Server struct {
 	Address string
 	Port    int
 }

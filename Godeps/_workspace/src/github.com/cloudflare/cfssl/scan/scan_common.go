@@ -11,7 +11,6 @@ import (
 )
 
 var (
-
 	// Network is the default network to use.
 	Network = "tcp"
 	// Dialer is the default dialer to use, with a 1s timeout.

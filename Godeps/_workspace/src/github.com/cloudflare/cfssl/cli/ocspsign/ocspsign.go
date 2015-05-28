@@ -10,8 +10,8 @@ import (
 	"github.com/letsencrypt/boulder/Godeps/_workspace/src/github.com/cloudflare/cfssl/ocsp"
 )
 
-var ocspSignerUsageText = // Usage text of 'cfssl ocspsign'
-`cfssl ocspsign -- signs an OCSP response for a given CA, cert, and status"
+// Usage text of 'cfssl ocspsign'
+var ocspSignerUsageText = `cfssl ocspsign -- signs an OCSP response for a given CA, cert, and status"
 
 Usage of ocspsign:
         cfssl ocspsign -ca cert -responder cert -key key -cert cert [-reason code]

@@ -9,8 +9,8 @@ import (
 	"github.com/letsencrypt/boulder/Godeps/_workspace/src/github.com/cloudflare/cfssl/ubiquity"
 )
 
-var bundlerUsageText = // Usage text of 'cfssl bundle'
-`cfssl bundle -- create a certificate bundle that contains the client cert
+// Usage text of 'cfssl bundle'
+var bundlerUsageText = `cfssl bundle -- create a certificate bundle that contains the client cert
 
 Usage of bundle:
 	- Bundle local certificate files
