@@ -50,6 +50,7 @@ type WebFrontEndImpl struct {
 	RevokeCertPath string
 	TermsPath      string
 	IssuerPath     string
+	BuildIDPath    string
 
 	// Issuer certificate (DER) for /acme/issuer-cert
 	IssuerCert []byte
@@ -73,6 +74,7 @@ func NewWebFrontEndImpl() WebFrontEndImpl {
 		RevokeCertPath: "/acme/revoke-cert/",
 		TermsPath:      "/terms",
 		IssuerPath:     "/acme/issuer-cert",
+		BuildIDPath:    "/build",
 	}
 }
 
@@ -94,6 +96,7 @@ func (wfe *WebFrontEndImpl) HandlePaths() {
 	http.HandleFunc(wfe.RevokeCertPath, wfe.RevokeCertificate)
 	http.HandleFunc(wfe.TermsPath, wfe.Terms)
 	http.HandleFunc(wfe.IssuerPath, wfe.Issuer)
+	http.HandleFunc(wfe.BuildIDPath, wfe.BuildID)
 }
 
 // Method implementations
@@ -735,6 +738,15 @@ func (wfe *WebFrontEndImpl) Issuer(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/pkix-cert")
 	w.WriteHeader(http.StatusOK)
 	if _, err := w.Write(wfe.IssuerCert); err != nil {
+		wfe.log.Warning(fmt.Sprintf("Could not write response: %s", err))
+	}
+}
+
+// BuildID tells the requestor what build we're running.
+func (wfe *WebFrontEndImpl) BuildID(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/plain")
+	w.WriteHeader(http.StatusOK)
+	if _, err := fmt.Fprintln(w, core.GetBuildID()); err != nil {
 		wfe.log.Warning(fmt.Sprintf("Could not write response: %s", err))
 	}
 }

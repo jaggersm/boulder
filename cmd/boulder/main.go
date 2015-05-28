@@ -119,6 +119,8 @@ func main() {
 		// XXX: Better way to do this?  Part of improved configuration
 		ra.AuthzBase = wfe.AuthzBase
 
+		auditlogger.Info(app.VersionString())
+
 		fmt.Fprintf(os.Stderr, "Server running, listening on %s...\n", c.WFE.ListenAddress)
 		err = http.ListenAndServe(c.WFE.ListenAddress, HandlerTimer(http.DefaultServeMux, stats))
 		cmd.FailOnError(err, "Error starting HTTP server")
